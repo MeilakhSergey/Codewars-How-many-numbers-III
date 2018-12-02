@@ -5,7 +5,7 @@ import java.util.List;
 public class HowManyNumbers {
     public static void main(String[] args) {
 
-        List<Long> result = findAll(20, 5);
+        List<Long> result = findAll(135, 15);
         for (Long item : result) {
             System.out.print(item + " ");
         }
@@ -24,7 +24,7 @@ public class HowManyNumbers {
         while (true) {
             number = generateCombinations(number, numDigits);
             sumOfDigits = Arrays.stream(number).sum();
-            System.out.println(Arrays.toString(number));
+            //System.out.println(Arrays.toString(number));
             if (sumOfDigits == sumDigits) {
                 max = Arrays.stream(number).mapToLong(n -> n).reduce(0, (a, b) -> a * 10 + b);
                 amountSum++;
