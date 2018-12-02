@@ -4,7 +4,8 @@ import java.util.List;
 
 public class HowManyNumbers {
     public static void main(String[] args) {
-        List<Long> result = findAll(35, 6);
+
+        List<Long> result = findAll(20, 5);
         for (Long item : result) {
             System.out.print(item + " ");
         }
@@ -19,23 +20,20 @@ public class HowManyNumbers {
         long min = 0;
         long max = 0;
         long sumOfDigits = 0;
+        long temp;
         while (true) {
             number = generateCombinations(number, numDigits);
             sumOfDigits = Arrays.stream(number).sum();
-
+            System.out.println(Arrays.toString(number));
             if (sumOfDigits == sumDigits) {
+                max = Arrays.stream(number).mapToLong(n -> n).reduce(0, (a, b) -> a * 10 + b);
                 amountSum++;
                 if (min == 0) {
-                    String s = Arrays.toString(number).replaceAll("[ ,\\]\\[]", "");
-                    min = Long.parseLong(s);
+                    min = max;
                 }
-                String s = Arrays.toString(number).replaceAll("[ ,\\]\\[]", "");
-                System.out.println("+++" + s);
-                max = Long.parseLong(s);
             }
             if (number[0] == number[numDigits - 1] && sumOfDigits >= sumDigits ||
                 number[0] == 9 && number[numDigits - 1] == 9) break;
-            //System.out.println(Arrays.toString(number));
         }
         if (amountSum == 0) return result;
         result.add(amountSum);
